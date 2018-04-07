@@ -3,6 +3,7 @@
 
 namespace Mpweb\Example;
 
+
 class DummyClass
 {
 
@@ -11,4 +12,8 @@ class DummyClass
         return true;
     }
 
+    public function throwException()
+    {
+        throw new \Exception;
+    }
 }

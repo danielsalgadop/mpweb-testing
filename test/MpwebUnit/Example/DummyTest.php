@@ -33,5 +33,14 @@ final class DummyTest extends PHPUnit_Framework_TestCase
 
         self::assertTrue($dummy->getTrue(), "Dummy::getTrue method did not return true");
     }
+    /** @test
+     * @expectedException     Exception
+     */
+    public function shouldThrowException()
+    {
+        $dummy = new DummyClass();
+        $dummy->throwException();
+        $this->expectException(InvalidArgumentException::class);
+    }
 
 }
