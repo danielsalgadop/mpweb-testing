@@ -3,7 +3,6 @@
 
 namespace Mpweb\Example;
 
-
 class DummyClass
 {
 
