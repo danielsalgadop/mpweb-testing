@@ -1,6 +1,5 @@
 <?php
 namespace Mpweb\Example;
-// use Mpweb\Example\Email;
 
 class EmailListClass{
 

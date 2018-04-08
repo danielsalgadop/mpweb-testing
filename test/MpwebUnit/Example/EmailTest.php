@@ -37,6 +37,4 @@ final class EmailTest extends PHPUnit_Framework_TestCase
         // var_dump($this->emailClassNOES_VISIBLE_EN_RESTO_DE_TEST->getEmail());
         self::assertEquals($this->string_correct_email, $this->emailClass->getEmail() );
     }
-
-
 }
