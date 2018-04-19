@@ -100,6 +100,11 @@ class FizzBuzzSolverTest extends \PHPUnit_Framework_TestCase
             ->method("solve")
             ->willReturn(self::FIZZ);
 
+        $firstSolver
+            ->method("hasNext")
+            ->willReturn(true);
+
+
         $secondSolver = $this->getMockForAbstractClass(Solver::class);
 
         $secondSolver

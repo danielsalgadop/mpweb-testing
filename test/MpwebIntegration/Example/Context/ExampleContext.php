@@ -3,40 +3,46 @@
 namespace MpwebIntegration\Example\Context;
 
 use Behat\Behat\Context\Context;
-use Mpweb\Example\DummyClass;
+use Mpweb\FizzBuzz\Solver\FizzBuzzSolver;
 use PHPUnit_Framework_Assert;
 
 final class ExampleContext implements Context
-
 {
+    public $fizzBuzzSolver;
     /**
-     * @Given /a value (\b.+\b) that I don't really need/
+     * @Given a value :value to run fizzbuzz
      */
-    public function aValueThatIDonTReallyNeed($value)
+    public function aValueToRunFizzbuzz($value)
     {
-        $this->useless_value = $value;
+        $this->value = $value;
+        // PHPUnit_Framework_Assert::assertTrue($this->value === $value);
+        // $this->useless_value = $value;
     }
 
     /**
-     * @Given /temporary storing another value (\b.+\b)/
+     * @When instancing and storing FizzBuzzSolver
      */
-    public function temporaryStoringAnotherValue($value)
+    public function instancingFizzBuzzSolver()
     {
-        $this->useful = $value;
+        $fizzBuzzSolver = new FizzBuzzSolver();
+        PHPUnit_Framework_Assert::assertInstanceOf(FizzBuzzSolver::class,$fizzBuzzSolver);
+        $this->fizzBuzzSolver = $fizzBuzzSolver;
+        // $this->useful = $value;
     }
 
     /**
-     * @When executing the dummy class
+     * @Then solving fizzBuzz
      */
-    public function executingTheDummyClass()
+    public function solvingFizzBuzz()
     {
-        $dummy_class = new DummyClass;
-
-        $this->dummy_class_response = $dummy_class->getTrue();
+        $result = $this->fizzBuzzSolver->solve((int)$this->value);
+        var_dump($this->fizzBuzzSolver);
+        var_dump($result);
+        PHPUnit_Framework_Assert::assertEquals($result,"1,2,fizz,4,buzz");
     }
 
     /**
-     * @Then the result should be true
+     * Then the result should be true
      */
     public function theResultShouldBeTrue()
     {
@@ -44,7 +50,7 @@ final class ExampleContext implements Context
     }
 
     /**
-     * @Then the temporary value should still be there
+     * Then the temporary value should still be there
      */
     public function theTemporaryValueShouldStillBeThere()
     {
