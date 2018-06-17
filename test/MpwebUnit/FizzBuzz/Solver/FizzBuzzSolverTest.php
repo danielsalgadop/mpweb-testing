@@ -25,6 +25,18 @@ class FizzBuzzSolverTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @dataProvider solutionFrom1to20Provider
+     */
+    public function sequenceTest($sequencial_numbers_from1to20)
+    {
+        foreach($sequencial_numbers_from1to20 as $number => $expected_result)
+        {
+            $result = $this->fizzBuzz->solve($number);
+            $this->assertEquals($expected_result, $result);
+        }
+    }
+    /**
+     * @test
      * @dataProvider numberDivisibleByThreeProvider
      */
     public function shouldReturnFizzForNumbersThatCanBeDividedByThree($number)
@@ -62,6 +74,36 @@ class FizzBuzzSolverTest extends \PHPUnit_Framework_TestCase
     {
         $this->givenANumber($number);
         $this->thenItShouldReturnFizzBuzz();
+    }
+
+    public function solutionFrom1to20Provider()
+    {
+        return [
+            [
+                [
+                    1 =>1,
+                    2 =>2,
+                    3 =>self::FIZZ_WORD,
+                    4 =>4,
+                    5 =>self::BUZZ_WORD,
+                    6 =>self::FIZZ_WORD,
+                    7 =>7,
+                    8 =>8,
+                    9 =>self::FIZZ_WORD,
+                    10 =>self::BUZZ_WORD,
+                    11 =>11,
+                    12 =>self::FIZZ_WORD,
+                    13 =>13,
+                    14 =>14,
+                    15 =>self::FIZZ_BUZZ_WORD,
+                    16 =>16,
+                    17 =>17,
+                    18 =>self::FIZZ_WORD,
+                    19 =>19,
+                    20 =>self::BUZZ_WORD,
+                ]
+            ]
+        ];
     }
 
     public function numberDivisibleByThreeProvider()
